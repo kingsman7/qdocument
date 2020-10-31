@@ -25,7 +25,7 @@
               {
                 name: 'title', label: this.$tr('ui.form.title'),
                 field: 'title',
-                align: 'center',
+                align: 'left',
                 sortable: true,
               },
               {

@@ -22,6 +22,7 @@
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
               {name: 'name', label: this.$tr('ui.form.title'), field: 'title', align: 'rigth'},
+              {name: 'slug', label: this.$tr('ui.form.slug'), field: 'slug', align: 'left'},
               {
                 name: 'parent', label: this.$tr('ui.form.parent'), field: 'parent', align: 'left',
                 format: val => val ? (val.title ? val.title : '-') : '-'
@@ -52,6 +53,17 @@
                   val => !!val || this.$tr('ui.message.fieldRequired')
                 ],
               },
+            },
+            slug: {
+              value: '',
+              type: 'input',
+              isTranslatable: true,
+              props : {
+                label: `${this.$tr('ui.form.slug')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+              }
             },
             description: {
               value: '',

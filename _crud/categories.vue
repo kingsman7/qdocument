@@ -24,6 +24,10 @@
               {name: 'name', label: this.$tr('ui.form.title'), field: 'title', align: 'rigth'},
               {name: 'slug', label: this.$tr('ui.form.slug'), field: 'slug', align: 'left'},
               {
+                name: 'private', label: this.$tr('ui.form.type'), field: 'private', align: 'left',
+                format : val => val ? (parseInt(val) ? this.$tr('ui.label.private') : this.$tr('ui.label.public')) : ''
+              },
+              {
                 name: 'parent', label: this.$tr('ui.form.parent'), field: 'parent', align: 'left',
                 format: val => val ? (val.title ? val.title : '-') : '-'
               },
@@ -92,6 +96,17 @@
                 select: {label: 'title', id: 'id'},
                 requestParams: {include: 'parent'}
               }
+            },
+            private: {
+              value: '0',
+              type: 'select',
+              props: {
+                label: this.$tr('ui.form.type'),
+                options: [
+                  {label: this.$tr('ui.label.private'), value: '1'},
+                  {label: this.$tr('ui.label.public'), value: '0'},
+                ]
+              },
             },
             mediasSingle: {
               name: 'mediasSingle',

@@ -10,6 +10,7 @@ export default {
     crudData() {
       return {
         crudId: this.crudId,
+        entityName: config("main.qdocument.entityNames.document"),
         apiRoute: 'apiRoutes.qdocument.documents',
         permission: 'idocs.documents',
         create: {

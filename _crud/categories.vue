@@ -13,6 +13,7 @@
       crudData() {
         return {
           crudId: this.crudId,
+          entityName: config("main.qdocument.entityNames.category"),
           apiRoute: 'apiRoutes.qdocument.categories',
           permission: 'idocs.categories',
           create: {

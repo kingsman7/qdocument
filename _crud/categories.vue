@@ -16,6 +16,7 @@
           entityName: config("main.qdocument.entityNames.category"),
           apiRoute: 'apiRoutes.qdocument.categories',
           permission: 'idocs.categories',
+          extraFormFields: 'idocs.crud-fields.categories',
           create: {
             title: this.$tr('qdocument.layout.newCategory'),
           },

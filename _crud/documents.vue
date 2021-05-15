@@ -13,6 +13,7 @@ export default {
         entityName: config("main.qdocument.entityNames.document"),
         apiRoute: 'apiRoutes.qdocument.documents',
         permission: 'idocs.documents',
+        extraFormFields: 'idocs.crud-fields.documents',
         create: {
           title: this.$tr('qdocument.layout.newDocument'),
         },

@@ -1,4 +1,5 @@
 export default {
+  moduleName: 'idocs',
   //Entities
   entityNames: {
     category: 'category',

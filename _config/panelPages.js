@@ -8,7 +8,7 @@ export default {
     crud : import('@imagina/qdocument/_crud/documents'),
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master'),
-    title: 'qdocument.sidebar.panelDocuments',
+    title: 'idocs.cms.sidebar.panelDocuments',
     icon: 'fas fa-folder-open',
     subHeader: {
       refresh: true,

@@ -51,7 +51,17 @@ export default {
               name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'center'
             },
           ],
-          requestParams: {include: 'category'}
+          requestParams: {include: 'category'},
+          actions: [
+            {
+              label: this.$tr("isite.cms.label.download"),
+              format: (item) => {
+                return { vIf: item.url ? true : false }
+              },
+              icon: "fas fa-file-download",
+              action: (item) => this.$helper.downloadFromURL(item.url),
+            }
+          ],
         },
         update: {
           title: this.$tr('idocs.cms.updateDocument'),

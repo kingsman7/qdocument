@@ -1,0 +1,101 @@
+{
+  "crudId": "idocs-crud-categories",
+  "entityName": "category",
+  "apiRoute": "/idocs/v1/categories",
+  "permission": "idocs.categories",
+  "extraFormFields": "idocs.crud-fields.categories",
+  "create": {
+    "title":"idocs.cms.newCategory"
+  },
+  "read": {
+    "columns": [
+      {
+        "name": "id",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.id"
+        },
+        "field": "id",
+        "align": "left",
+        "style": "width: 50px",
+        "sortable": false
+      },
+      {
+        "name": "name",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.title"
+        },
+        "field": "title",
+        "sortable": false,
+        "align": "right"
+      },
+      {
+        "name": "private",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.type"
+        },
+        "field": "private",
+        "sortable": false,
+        "format":{
+          "type":"conditional",
+          "isVal": {
+            "method": "parseInt",
+            "value": "val",
+            "yes":"isite.cms.label.private",
+            "no":"isite.cms.label.public"
+          }
+        }
+      },
+      {
+        "name": "parent",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.parent"
+        },
+        "field": "parent",
+        "sortable": false,
+        "align": "left",
+        "format":{
+          "type":"str",
+          "child":["title"]
+        }
+      },
+      {
+        "name": "created_at",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.createdAt"
+        },
+        "field": "createdAt",
+        "sortable": false,
+        "align": "right",
+        "format":{
+          "type":"date",
+          "includes": {
+            "type":"long"
+          }
+        }
+      },
+      {
+        "name": "actions",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.actions"
+        },
+        "field": "actions",
+        "sortable": false,
+        "align": "left"
+      }
+    ],
+    "requestParams": {
+      "include": "parent"
+    }
+  },
+  "update": {
+    "title": "idocs.cms.updateCategory",
+    "requestParams": {"include": "parent"}
+  },
+  "delete": true
+}

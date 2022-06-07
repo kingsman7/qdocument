@@ -1,9 +1,16 @@
-<template></template>
+<template>
+  <config-crud ref="configCrud" />
+</template>
 <script>
+import configCrud from "@imagina/qcrud/_config/CrudConfig"
+  import Json from "@imagina/qdocument/_crud/categories.json"
   //Component
   import crud from '@imagina/qcrud/_components/crud'
 
   export default {
+    components:{
+      configCrud
+    },
     data() {
       return {
         crudId: this.$uid()
@@ -12,7 +19,8 @@
     computed: {
       crudData() {
         return {
-          crudId: this.crudId,
+          ...this.$refs.configCrud.getData(Json),
+          /*crudId: this.crudId,
           entityName: config("main.qdocument.entityNames.category"),
           apiRoute: 'apiRoutes.qdocument.categories',
           permission: 'idocs.categories',
@@ -45,7 +53,7 @@
             title: this.$tr('idocs.cms.updateCategory'),
             requestParams: {include: 'parent'}
           },
-          delete: true,
+          delete: true,*/
           formLeft: {
             id: {value: ''},
             userId: {value: this.$store.state.quserAuth.userId},

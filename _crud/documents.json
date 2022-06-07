@@ -1,0 +1,156 @@
+{
+  "crudId": "idocs-crud-documents",
+  "entityName": "document",
+  "apiRoute": "/idocs/v1/documents",
+  "permission": "idocs.documents",
+  "extraFormFields": "idocs.crud-fields.documents",
+  "create": {
+    "title":"idocs.cms.newDocument"
+  },
+  "read": {
+    "columns": [
+      {
+        "name": "id",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.id"
+        },
+        "field": "id",
+        "align": "left",
+        "style": "",
+        "sortable": true
+      },
+      {
+        "name": "title",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.title"
+        },
+        "field": "title",
+        "sortable": true,
+        "align": "left"
+      },
+      {
+        "name": "status",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.status"
+        },
+        "field": "status",
+        "sortable": true,
+        "asStatus": true
+      },
+      {
+        "name": "private",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.type"
+        },
+        "field": "private",
+        "sortable": false,
+        "format":{
+          "type":"conditional",
+          "isVal": {
+            "method": "parseInt",
+            "value": "val",
+            "yes":"isite.cms.label.private",
+            "no":"isite.cms.label.public"
+          }
+        }
+      },
+      {
+        "name": "category",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.category"
+        },
+        "field": "category",
+        "sortable": false,
+        "align": "left",
+        "format":{
+          "type":"str",
+          "child":["title"]
+        }
+      },
+
+      {
+        "name": "created_at",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.createdAt"
+        },
+        "field": "createdAt",
+        "sortable": false,
+        "align": "right",
+        "format":{
+          "type":"date",
+          "includes": {
+            "type":"long"
+          }
+        }
+      },
+      {
+        "name": "actions",
+        "label": {
+          "isTranslatable": "singular",
+          "value": "isite.cms.form.actions"
+        },
+        "field": "actions",
+        "sortable": false,
+        "align": "left"
+      }
+    ],
+    "requestParams": {
+      "include": "category"
+    },
+    "actions": [
+      {
+        "label":"isite.cms.label.download",
+        "icon": "fas fa-file-download",
+        "action": {
+          "type":"exteralUrl - ref - method - helper",
+          "useStore": true,
+          "domine":"qsiteApp.baseUrl",
+          "value":"item.slug", 
+          "method": "showAuctionData",
+          "externalUrl": "/anuncios/${item.slug}",
+          "params":[
+            {
+              "name":"auctionId",
+              "param":"id",
+              "modalProps":{
+                "title": "iauctions.cms.newBid"
+              }
+            }
+          ]
+        },
+        "format": {
+          "type": "str - conditional",
+          "if": false,
+          "not": true,
+          "child": ["service"],
+          "firtsLevel":["form"],
+          "validationAppMode": {
+            "mode":"iadmin",
+            "if":{
+              "child":false,
+              "value":[1],
+              "returnValue": {"vIf": false}
+            } ,
+            "else": false,
+            "elseIf": {
+              "child":"status",
+              "value":[2,3],
+              "returnValue":{"vIf": false}
+            }
+          }
+        }
+      }
+    ]
+  },
+  "update": {
+    "title": "idocs.cms.updateDocument",
+    "requestParams": {"include": "users"}
+  },
+  "delete": true
+}
